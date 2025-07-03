@@ -1,11 +1,9 @@
 package com.mulivendor.ecommerce.Ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mulivendor.ecommerce.Ecommerce.domain.USER_ROLE;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,7 +31,10 @@ public class Users{
     private String mobile;
     private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
+    @OneToMany
     private Set<Address> addresses = new HashSet<>();
 
+    @ManyToMany
+    @JsonIgnore
     private Set<Coupon> usedCoupon = new HashSet<>();
 }
