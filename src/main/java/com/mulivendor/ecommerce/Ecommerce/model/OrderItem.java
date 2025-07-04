@@ -12,20 +12,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CartItem {
+public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
     @JsonIgnore
-    private Cart cart;
+    private Order order;
 
     @ManyToOne
     private Product product;
 
     private String size;
-    private int quantity = 1;
+    private int quantity;
     private Integer mrpPrice;
     private Integer sellingPrice;
     private Long userId;

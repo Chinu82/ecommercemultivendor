@@ -1,6 +1,5 @@
 package com.mulivendor.ecommerce.Ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,21 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CartItem {
+public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JsonIgnore
-    private Cart cart;
-
-    @ManyToOne
-    private Product product;
-
-    private String size;
-    private int quantity = 1;
-    private Integer mrpPrice;
-    private Integer sellingPrice;
-    private Long userId;
+    private Integer discount;
+    @OneToOne
+    private HomeCategory category;
 }

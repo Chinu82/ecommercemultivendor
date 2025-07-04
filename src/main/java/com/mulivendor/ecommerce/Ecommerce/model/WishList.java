@@ -1,32 +1,27 @@
 package com.mulivendor.ecommerce.Ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CartItem {
+public class WishList {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JsonIgnore
-    private Cart cart;
+    @OneToOne
+    private Users user;
 
-    @ManyToOne
-    private Product product;
-
-    private String size;
-    private int quantity = 1;
-    private Integer mrpPrice;
-    private Integer sellingPrice;
-    private Long userId;
+    @ManyToMany
+    private Set<Product> products = new HashSet<>();
 }

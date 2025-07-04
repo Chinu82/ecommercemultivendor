@@ -1,32 +1,31 @@
 package com.mulivendor.ecommerce.Ecommerce.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CartItem {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
-    @JsonIgnore
-    private Cart cart;
+    private Users customer;
+
+    @OneToOne
+    private Order order;
 
     @ManyToOne
-    private Product product;
+    private Seller seller;
 
-    private String size;
-    private int quantity = 1;
-    private Integer mrpPrice;
-    private Integer sellingPrice;
-    private Long userId;
+    private LocalDateTime date = LocalDateTime.now();
 }

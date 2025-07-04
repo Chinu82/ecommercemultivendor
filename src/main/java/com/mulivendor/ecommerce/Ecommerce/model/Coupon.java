@@ -29,6 +29,6 @@ public class Coupon {
 
     private boolean isActive = false;
 
-    @ManyToMany(mappedBy = "usedCoupons")   //It doesnot create extra field just go to parent and map
+    @ManyToMany(mappedBy = "usedCoupon")   //It doesnot create extra field just go to parent and map
     private Set<Users> usedByUsers = new HashSet<>();
 }
