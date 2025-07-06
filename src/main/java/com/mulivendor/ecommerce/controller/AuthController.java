@@ -1,12 +1,9 @@
 package com.mulivendor.ecommerce.controller;
 
 import com.mulivendor.ecommerce.domain.USER_ROLE;
-import com.mulivendor.ecommerce.model.Users;
-import com.mulivendor.ecommerce.repository.UserRepository;
 import com.mulivendor.ecommerce.request.SignupRequest;
 import com.mulivendor.ecommerce.response.AuthResponse;
 import com.mulivendor.ecommerce.service.AuthService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
