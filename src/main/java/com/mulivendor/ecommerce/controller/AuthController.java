@@ -1,7 +1,9 @@
 package com.mulivendor.ecommerce.controller;
 
 import com.mulivendor.ecommerce.domain.USER_ROLE;
+import com.mulivendor.ecommerce.model.VerificationCode;
 import com.mulivendor.ecommerce.request.SignupRequest;
+import com.mulivendor.ecommerce.response.ApiResponse;
 import com.mulivendor.ecommerce.response.AuthResponse;
 import com.mulivendor.ecommerce.service.AuthService;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody SignupRequest request) {
+    public ResponseEntity<AuthResponse> createUserHandler(@RequestBody SignupRequest request) throws Exception {
 
         String jwt = authService.createUser(request);
 
@@ -28,6 +30,15 @@ public class AuthController {
         response.setJwt(jwt);
         response.setMessage("register success");
         response.setRole(USER_ROLE.ROLE_CUSTOMER);
+        return ResponseEntity.ok(response);
+    }
+    @PostMapping("/sent/login-siginup-otp")
+    public ResponseEntity<ApiResponse> sentOtpHandler(@RequestBody VerificationCode request) throws Exception {
+
+        authService.sentLoginSignupOtp(request.getEmail());
+
+        ApiResponse response = new ApiResponse();
+        response.setMessage("otp sent successfully");
         return ResponseEntity.ok(response);
     }
 }
@@ -38,3 +49,4 @@ public class AuthController {
 //03:04:10 : Configure spring security and jwt token
 //03:04:29 : config spring security
 //03:06:00 : pom implement spring security
+//05:00:45 : for otp controller
